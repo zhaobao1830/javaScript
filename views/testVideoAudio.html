@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试video和audio</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="../js/EventUtil.js"></script>
+    <script>
+        //取得元素的引用
+        var player=document.getElementById("player"),
+         duration=document.getElementById("duration"),
+         btn=document.getElementById("video-btn");
+         duration.innerHTML=player.duration
+        btn.value=dsds
+        //为按钮添加事件处理程序
+        EventUtil.addHandler(btn,"click",function(){
+            if(player.paused){
+                player.play();
+                btn.value="Pause";
+            }else{
+                player.pause();
+                btn.value="Play"
+            }
+        })
+    </script>
+</head>
+<body>
+    <div class="mediaplayer">
+        <div class="video">
+            <video id="player" src="" poster="../images/test.jpg" width="100" height="100">
+                this is video
+            </video>
+            <div class="controls">
+                <input type="button" class="play" id="video-btn">
+                <span id="curtime">0</span>/<span id="duration">0</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

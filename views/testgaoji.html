@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>检测是否是数组</title>
+    <script>
+        /*判断是否是数组*/
+        var arrayList=[1,2,3]
+        function isArray(value){
+            return Object.prototype.toString.call(value)
+        }
+//        alert(Object.prototype.toString.call(arrayList))
+        /*判断是否是正在表达式*/
+        function isRegExp(value){
+            return Object.prototype.toString.call(value)
+        }
+//        var regExp1=/[0-9]+/
+        //        console.log(isRegExp(regExp1))
+        /*判断是否是原生函数*/
+        function isFunction(value){
+            return Object.prototype.toString.call(value)
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

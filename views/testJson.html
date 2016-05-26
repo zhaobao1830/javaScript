@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试json</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="../js/EventUtil.js"></script>
+    <script>
+        var book={
+            "title":"Pdsafsd",
+            "authors":[
+                "DSAREVBWA"
+            ],
+            edition:3,
+            year:2011
+        }
+        var jsonText=JSON.stringify(book,null,4)
+//        var bookCpoe=JSON.parse(jsonText)
+        var bookCpoe=JSON.parse(jsonText,function(key,value){
+            if(key=="edition"){
+                return 1100
+            }else{
+                return value
+            }
+        })
+        console.log(bookCpoe)
+//        var bookcopy=JSON.parse(jsonText,function(key,value){
+//            if(key=="releaseDate"){
+//                return new Date(value)
+//            }else{
+//                return value
+//            }
+//        })
+//
+//        alert(bookcopy.releaseDate.getFullYear())
+//        var bookcopeJson=JSON.stringify(bookcopy)
+//        console.log(bookcopeJson)
+//        console.log(bookcopeJson.authors)
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
