@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Cookies Example</title>
+    <script type="text/javascript" src="../js/EventUtil.js"></script>
+    <script type="text/javascript" src="../js/CookieUtil.js"></script>
+</head>
+<body>
+    <p>Name:<span id="name-value"></span><br>
+       Book:<span id="book-value"></span>
+        <input type="button" value="删除" id="deleteButton">
+        <input type="button" value="添加" id="addButton">
+        <input type="button" value="查看" id="searchButton">
+    </p>
+    <script type="text/javascript">
+        EventUtil.addHandler(window,"load",function(){
+            CookieUtil.set("name","zhaobao")
+            CookieUtil.set("book","123456")
+            document.getElementById("name-value").innerHTML=CookieUtil.get("name");
+            document.getElementById("book-value").innerHTML=CookieUtil.get("book");
+
+            EventUtil.addHandler(document.getElementById("deleteButton"),"click",function(){
+                CookieUtil.unset("name")
+                CookieUtil.unset("book")
+            })
+
+            EventUtil.addHandler(document.getElementById("searchButton"),"click",function(){
+                document.getElementById("name-value").innerHTML=CookieUtil.get("name");
+                document.getElementById("book-value").innerHTML=CookieUtil.get("book");
+            })
+            EventUtil.addHandler(document.getElementById("addButton"),"click",function(){
+                CookieUtil.set("name","zhaobao1830")
+                CookieUtil.set("book","654321")
+            })
+        })
+     </script>
+</body>
+</html>

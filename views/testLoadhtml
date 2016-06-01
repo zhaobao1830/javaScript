@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试页面加载后出发的方法</title>
+    <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="../js/EventUtil.js"></script>
+    <script>
+//        $(document).ready(function(){
+//            var ss1=document.getElementById("ss")
+//            EventUtil.addHandler(ss1,"click",function(){
+//                alert("tttt")
+//            })
+//        })
+//        window.onload=function(){
+//            var ss1=document.getElementById("ss")
+//            EventUtil.addHandler(ss1,"click",function(){
+//                alert("tttt")
+//            })
+//        }
+//        $(function(){
+//            var ss1=document.getElementById("ss")
+//            EventUtil.addHandler(ss1,"click",function(){
+//                alert("tttt")
+//            })
+//        })
+
+    </script>
+</head>
+<body>
+   <a id="ss">犯得上发生</a>
+   <!--使用dom来添加方法，必须在页面加载后才行，即必须把script方法，放在a后面-->
+   <script>
+       (function(){
+           var ss1=document.getElementById("ss")
+           EventUtil.addHandler(ss1,"click",function(){
+               alert("tttt")
+           })
+       })()
+   </script>
+</body>
+</html>
