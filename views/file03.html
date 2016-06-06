@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>File API Example01</title>
+    <script type="text/javascript" src="../js/EventUtil.js"></script>
+</head>
+<body>
+    <input type="file" id="files-list">
+    <script type="text/javascript">
+        function blobSlice(blob,startByte,length){
+            if(blob.slice){
+                return blob.slice(startByte,length)
+            }else if(blob.webkitSlice){
+                return blob.webkitSlice(startByte, length);
+            }else if(blob.mozSlice){
+                return blob.mozSlice(startByte, length);
+            }else{
+                return null;
+            }
+        }
+
+        window.onload = function(){
+
+            var filesList = document.getElementById("files-list");
+            EventUtil.addHandler(filesList, "change", function(event){
+                var info = "",
+                        output = document.getElementById("output"),
+                        progress = document.getElementById("progress"),
+                        files = EventUtil.getTarget(event).files,
+                        reader = new FileReader(),
+                        blob = blobSlice(files[0], 0, 32);
+
+                if (blob){
+                    reader.readAsText(blob);
+
+                    reader.onerror = function(){
+                        output.innerHTML = "Could not read file, error code is " + reader.error.code;
+                    };
+
+                    reader.onload = function(){
+                        output.innerHTML = reader.result;
+                    };
+                } else {
+                    alert("Your browser doesn't support slice().");
+                }
+            });
+        };
+
+    </script>
+    <pre id="output"></pre>
+</body>
+</html>

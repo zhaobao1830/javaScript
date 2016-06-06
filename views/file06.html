@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>File API Example05</title>
+    <script type="text/javascript" src="../js/EventUtil.js"></script>
+</head>
+<body>
+    <div id="droptarget" style="width: 500px; height: 200px; background: silver">
+        Drop some files here
+    </div>
+
+<script type="text/javascript">
+        window.onload = function(){
+
+            var droptarget = document.getElementById("droptarget");
+
+            function handleEvent(event){
+                var info = "",
+                        output = document.getElementById("output"),
+                        data, xhr,
+                        files, i, len;
+
+                EventUtil.preventDefault(event);
+
+                if (event.type == "drop"){
+                    data = new FormData();
+                    files = event.dataTransfer.files;
+                    i = 0;
+                    len = files.length;
+
+                    while (i < len){
+                        data.append("file" + i, files[i]);
+                        i++;
+                    }
+
+                    xhr = new XMLHttpRequest();
+                    xhr.open("post", "FileAPIExample06Upload.php", true);
+                    xhr.onreadystatechange = function(){
+                        if (xhr.readyState == 4){
+                            alert(xhr.responseText);
+                        }
+                    };
+                    xhr.send(data);
+                }
+            }
+
+            EventUtil.addHandler(droptarget, "dragenter", handleEvent);
+            EventUtil.addHandler(droptarget, "dragover", handleEvent);
+            EventUtil.addHandler(droptarget, "drop", handleEvent);
+
+        };
+    </script>
+    <pre id="output"></pre>
+</body>
+</html>
